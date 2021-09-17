@@ -3,10 +3,10 @@ from rest_framework.decorators import permission_classes
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .serializers import LicenceSerializer, OrganizationSerializer
-
 from licenses.models import Licence
 from organizations.models import Organization
+
+from .serializers import LicenceSerializer, OrganizationSerializer
 
 
 @permission_classes((IsAuthenticatedOrReadOnly,))
