@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block title %}Последние записи{% endblock %}
+{% block header %}  
+
+<h2>  
+{% if query %}
+    Найдено по запросу: {{query}}  
+{% elif hashtag %} 
+    #{{hashtag}}      
+{% endif %}   
+</h2>  
+{% endblock %}
+{% block content %}  
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Полное наименование</th>
+        <th scope="col">Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for line in page %}          
+        <tr>             
+            <td>{{line.name}} </td>
+            <td>{{line.full_name}} </td>
+            <td>{{line.description}} </td>
+          </tr>
+    {% endfor%}      
+    </tbody>
+  </table> 
+{% include "paginator.html" %}
+{% endblock %}
