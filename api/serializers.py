@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from licenses.models import Licence
-from organizations.models import Organization
+from owners.models import Owner
 from repositories.models import Repository
 
 
@@ -11,9 +11,9 @@ class LicenceSerializer(serializers.ModelSerializer):
         exclude = ('id',)
 
 
-class OrganizationSerializer(serializers.ModelSerializer):
+class OwnerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Organization
+        model = Owner
         exclude = ('id',)
 
 

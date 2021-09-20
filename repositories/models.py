@@ -1,11 +1,13 @@
 from django.db import models
 
 from licenses.models import Licence
+from owners.models import Owner
 
 
 class Repository(models.Model):
+    git_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=250)
-    full_name = models.CharField(unique=True, max_length=250)
+    full_name = models.CharField(max_length=250)
     license = models.ForeignKey(
         Licence,
         verbose_name='Licence',
@@ -30,17 +32,17 @@ class Repository(models.Model):
         blank=True,
         null=True,
     )
-    """topics: [
-      octocat,
-      atom,
-      electron,
-      api
-    ],"""
+    owner = models.ForeignKey(
+        Owner,
+        verbose_name='Owner',
+        on_delete=models.CASCADE,
+        related_name='repositories',
+        blank=False,
+        null=False,
+    )
     pushed_at = models.DateTimeField()
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
-    """permissions: {
-      admin: false,
-      push: false,
-      pull: true
-    },"""
+
+    class Meta:
+        ordering = ('full_name',)

@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
-{% block title %}Последние записи{% endblock %}
+{% block title %}Загруженные репозитории{% endblock %}
 {% block header %}  
-
+<h1>Загруженные репозитории</h1> 
 <h2>  
 {% if query %}
     Найдено по запросу: {{query}}  
@@ -14,17 +14,21 @@
 <table class="table">
     <thead>
       <tr>
+        <th scope="col">ID</th>
         <th scope="col">Наименование</th>
         <th scope="col">Полное наименование</th>
-        <th scope="col">Описание</th>
+        <th scope="col">Владелец</th>
+        <th scope="col">Дата создания</th>
       </tr>
     </thead>
     <tbody>
      {% for line in page %}          
         <tr>             
+            <td>{{line.git_id}} </td>
             <td>{{line.name}} </td>
             <td>{{line.full_name}} </td>
-            <td>{{line.description}} </td>
+            <td>{{line.owner}} </td>
+            <td>{{line.created_at}} </td>
           </tr>
     {% endfor%}      
     </tbody>
